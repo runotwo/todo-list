@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo list</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href={% static "main.css" %}>
+</head>
+<body>
+
+<div class="container">
+    <h1>ToDo list</h1>
+    <div id='app'>
+        <div class="row" v-if="isMain">
+            <button class="btn btn-primary" @click="ch">Добавить</button>
+            <button class="btn btn-danger" v-if="selected" @click="del">Удалить</button>
+        </div>
+        <div class="row" v-else>
+            <input type="text" class="form-control col" placeholder="Задача" v-model="newTodo">
+            <button class="btn btn-primary" @click="addt">Добавить</button>
+            <button class="btn btn-danger" @click="ch">Отмена</button>
+        </div>
+        {% verbatim %}
+        <div class="alert" v-for="(item, index) of items"
+             :class="{'alert-primary' : !item.isComplete, 'alert-light': item.isComplete, 'sel':item.selected}">
+            <div class="row align-items-center qq">
+                <label @mousedown="switchCompleted(index)">
+                    <span class="checkbox-custom" :class="{'checked' : item.isComplete}"></span>
+                </label>
+                <div class="col text" @click="select(index)">
+                    {{ item.text }}
+                </div>
+            </div>
+        </div>
+        {% endverbatim %}
+    </div>
+</div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src={% static "main.js" %}></script>
+</body>
+</html>

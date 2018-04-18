@@ -1,0 +1,73 @@
+/* Скрываем реальный чекбокс */
+.checkbox {
+	display: none;
+}
+/* Задаем внешний вид для нашего кастомного чекбокса. Все обязательные свойства прокомментированы, остальные же свойства меняйте по вашему усмотрению */
+.checkbox-custom {
+    cursor: pointer;
+    margin-top: 10px;
+	position: relative;      /* Обязательно задаем, чтобы мы могли абсолютным образом позиционировать псевдоэлемент внютри нашего кастомного чекбокса */
+	width: 40px;             /* Обязательно задаем ширину */
+	height: 40px;            /* Обязательно задаем высоту */
+	border: 2px solid #ccc;
+	border-radius: 3px;
+}
+/* Кастомный чекбокс и лейбл центрируем по вертикали. Если вам это не требуется, то вы можете убрать свойство vertical-align: middle из данного правила, но свойство display: inline-block обязательно должно быть */
+.checkbox-custom,
+.label {
+	display: inline-block;
+	vertical-align: middle;
+}
+/* Если реальный чекбокс у нас отмечен, то тогда добавляем данный признак и к нашему кастомному чекбоксу  */
+.checked.checkbox-custom::before {
+	content: "";             /* Добавляем наш псевдоэлемент */
+	display: block;			 /* Делаем его блочным элементом */
+	position: absolute;      /* Позиционируем его абсолютным образом */
+	/* Задаем расстояние от верхней, правой, нижней и левой границы */
+	top: 2px;
+	right: 2px;
+	bottom: 2px;
+	left: 2px;
+	background: #413548;     /* Добавляем фон. Если требуется, можете поставить сюда картинку в виде "галочки", которая будет символизировать, что чекбокс отмечен */
+	border-radius: 2px;
+}
+.row {
+    padding-left: 15px;
+    padding-right: 7px;
+}
+
+.alert {
+    margin-top: 10px;
+    min-height: 60px;
+    cursor: pointer;
+    padding: 0;
+    padding-left: 10px;
+}
+
+.col.text{
+    font-size: 24px;
+    height: 100%;
+    display: block;
+
+}
+
+.alert-light{
+    background-color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.alert-light.sel{
+    background-color: #cdcdcd;
+}
+
+.alert-primary.sel{
+    background-color: #c0d9f3;
+}
+
+.btn{
+    margin-right: 10px;
+}
+
+input.col{
+    margin-right: 10px;
+}
